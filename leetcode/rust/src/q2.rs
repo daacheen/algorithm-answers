@@ -1,7 +1,5 @@
 use crate::utils::ListNode;
-use std::rc::Rc;
-
-struct Solution;
+use crate::utils::Solution;
 
 impl Solution {
     pub fn add_two_numbers(

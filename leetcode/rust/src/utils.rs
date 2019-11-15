@@ -11,3 +11,5 @@ impl ListNode {
     }
 }
 
+pub struct Solution;
+
