@@ -1,4 +1,5 @@
 use crate::utils::ListNode;
+use std::rc::Rc;
 
 struct Solution;
 
@@ -7,9 +8,8 @@ impl Solution {
         l1: Option<Box<ListNode>>,
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
-        let mut r = Box::new(ListNode::new(0));
-
-        let re = r.clone();
+        let mut re = Box::new(ListNode::new(0));
+        let mut r = &mut re;
 
         let mut carry = 0;
 
@@ -34,14 +34,13 @@ impl Solution {
             carry = result / 10;
             result %= 10;
 
-            let next = Box::new(ListNode::new(result));
-            r.next = Some(next.clone());
-            r = next;
+            r.next = Some(Box::new(ListNode::new(result)));
+            r = r.next.as_mut().unwrap();
         }
         if carry == 1 {
             r.next = Some(Box::new(ListNode::new(1)));
         }
 
-        return Some(re);
+        return re.next;
     }
 }
