@@ -1,19 +1,18 @@
-#include <vector>
 #include <algorithm>
-#include <cmath>
-#include <string>
-#include <queue>
-#include <iostream>
-#include <unordered_map>
-#include <map>
-#include <stack>
-#include <unordered_set>
 #include <climits>
+#include <cmath>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <stack>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 using namespace std;
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
@@ -21,8 +20,9 @@ struct TreeNode
 };
 
 struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode(int x) : val(x), next(nullptr) {}
-	
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
