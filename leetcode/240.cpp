@@ -9,6 +9,7 @@
 // center<target, no left upper square
 // center>target, no right lower square
 
+// BARELY PASSES
 class Solution {
   public:
     int target;
@@ -31,8 +32,17 @@ class Solution {
             colEnd >= matrix[0].size()) {
             return false;
         }
-        if (rowStart == rowEnd && colStart == colEnd) {
-            return target == matrix[rowStart][colStart];
+
+        // if the matrix is smaller than 2*2, handle manually
+        if (rowEnd - rowStart <= 1 || colEnd - colStart <= 1) {
+            for (int r = rowStart; r <= rowEnd; r++) {
+                for (int c = colStart; c <= colEnd; c++) {
+                    if (matrix[r][c] == target) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         int rowMid = (rowStart + rowEnd) / 2, colMid = (colStart + colEnd) / 2;
@@ -40,20 +50,20 @@ class Solution {
 
         if (centerElement == target) {
             return true;
-        } else if (centerElement > target) { // no right lower
-            return filter(matrix, rowStart, rowMid - 1, colStart,
+        } else if (centerElement > target) {
+            return filter(matrix, rowStart, rowMid, colStart,
                           colMid - 1) || // left upper
-                   filter(matrix, rowStart, rowMid - 1, colMid,
+                   filter(matrix, rowStart, rowMid, colMid,
                           colEnd) || // right upper
                    filter(matrix, rowMid, rowEnd, colStart,
-                          colMid - 1); // left lower
+                          colMid); // left lower
         } else {
-            return filter(matrix, rowStart, rowMid - 1, colMid,
+            return filter(matrix, rowStart, rowMid, colMid,
                           colEnd) || // right upper
-                   filter(matrix, rowMid + 1, rowEnd, colMid + 1,
+                   filter(matrix, rowMid, rowEnd, colMid,
                           colEnd) || // right lower
                    filter(matrix, rowMid, rowEnd, colStart,
-                          colMid - 1); // left lower
+                          colMid); // left lower
         }
     }
 };
