@@ -1,5 +1,4 @@
 
-// NOT COMPLETED
 #include "cppincludes.h"
 
 class Solution {
@@ -29,9 +28,9 @@ class Solution {
         while (i < rest.length()) {
             char c = rest[i];
             string newRest = rest;
-            newRest.erase(rest.begin() + i);
+            newRest.erase(newRest.begin() + i);
             // insert the char into each position in the base
-            for (int j = 0; j < base.size(); i++) {
+            for (int j = 0; j <= base.size(); j++) {
                 string newString = base;
                 newString.insert(newString.begin() + j, c);
                 if (visited.find(newString) == visited.end()) {
@@ -43,7 +42,8 @@ class Solution {
             }
 
             // iterate i to the next unique char
-            while (i < rest.length() && rest[++i] == c) {
+            while (i < rest.length() && rest[i] == c) {
+                i++;
             }
         }
     }
