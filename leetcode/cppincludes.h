@@ -26,3 +26,10 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
+
+template <typename T> void print_vector(vector<T> &v) {
+    for (auto a : v) {
+        cout << a << " ";
+    }
+    cout << endl;
+}
